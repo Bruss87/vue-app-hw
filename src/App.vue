@@ -1,31 +1,31 @@
 <template>
   <div>
-    <h1>Comic Books Characters</h1>
+    <h1>Guardian Articles List</h1>
     <div class="main-container">
-      <characters-list :characters="characters"></characters-list>
+      <articles-list :articles="articles"></articles-list>
     </div>
   </div>
 </template>
 
 <script>
-import CharactersList from './components/CharactersList.vue'
+import ArticlesList from './components/ArticlesList.vue'
 export default {
   data(){
     return{
-      characters: [],
-      selectedCharacter: null,
-      favCharacters: []
+      articles: [],
+      selectedArticle: null,
+      savedArticles: []
     }
   },
   components:{
-
+     "articles-list": ArticlesList
   },
-  mounted()
-    fetch(https://comicvine.gamespot.com/api/characters/?api_key=708444ed348c988274e7eff457d15885b54be794&format=json)
+  mounted(){
+  fetch('https://content.guardianapis.com/search?api-key=test&page-size=25')
     .then(res => res.json())
-    .then(characters => this.characters = characters)
+    .then(articles => this.articles = articles)
   }
-}
+  }
 </script>
 
 <style>
