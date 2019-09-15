@@ -1,16 +1,17 @@
 <template>
   <div>
     <ol>
-      <list-component v-for="(article, index) in articles" :article="article" :key="index"></list-component>
+      <list-component v-for="film in films" :film="film" :key="film.id" ></list-component>
     </ol>
   </div>
 </template>
 
 <script>
 import ListComponent from './ListComponent.vue'
+
 export default {
-  name: 'articles-list',
-  props: [articles],
+  name: 'films-list',
+  props: ['films'],
   components:{
     'list-component': ListComponent
   }

@@ -1,29 +1,30 @@
 <template>
   <div>
-    <h1>Guardian Articles List</h1>
+    <h1>Studio Ghibli Films List</h1>
     <div class="main-container">
-      <articles-list :articles="articles"></articles-list>
+      <films-list :films="films"></films-list>
     </div>
   </div>
 </template>
 
 <script>
-import ArticlesList from './components/ArticlesList.vue'
+import {eventBus} from './main.js'
+import FilmsList from './components/FilmsList.vue'
 export default {
   data(){
     return{
-      articles: [],
-      selectedArticle: null,
-      savedArticles: []
+      films: [],
+      selectedFilm: null,
+      savedFilms: []
     }
   },
   components:{
-     "articles-list": ArticlesList
+     "films-list": FilmsList
   },
   mounted(){
-  fetch('https://content.guardianapis.com/search?api-key=test&page-size=25')
+  fetch('https://ghibliapi.herokuapp.com/films')
     .then(res => res.json())
-    .then(articles => this.articles = articles)
+    .then(films => this.films = films)
   }
   }
 </script>
